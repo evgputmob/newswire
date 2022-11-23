@@ -17,7 +17,7 @@ class NewswireService implements INewswireService {
   UnmodifiableListView<NewsItem> get news => UnmodifiableListView(_news);
 
   @override
-  final eventsStreamController = StreamController<String>();
+  final eventsStreamController = StreamController<String>.broadcast();
 
   NewswireService() {
     _apiKey = dotenv.env['NewswireApiKey'] ?? '';

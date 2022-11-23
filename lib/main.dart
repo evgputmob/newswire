@@ -18,6 +18,7 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(
+          lazy: false,
           create: (_) =>
               NewsCubit(newsService: GetIt.I<INewswireService>())..getNews(),
         ),
@@ -37,66 +38,8 @@ class NewswireApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
+      debugShowCheckedModeBanner: false,
       home: const HomeScreen(),
     );
   }
 }
-
-// class HomePage extends StatefulWidget {
-//   const HomePage({super.key});
-
-//   @override
-//   State<HomePage> createState() => _HomePageState();
-// }
-
-// class _HomePageState extends State<HomePage> {
-//   bool _isLoaded = false;
-//   List<NewsItem> _news = [];
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Times Newswire'),
-//         centerTitle: true,
-//       ),
-//       body: (!_isLoaded)
-//           ? const Center(
-//               child: Text('press load data'),
-//             )
-//           : ListView.separated(
-//               itemCount: _news.length,
-//               itemBuilder: (_, index) => NewsItemTile(newsItem: _news[index]),
-//               separatorBuilder: (_, __) =>
-//                   // Container(color: Colors.grey[350], height: 2),
-//                   // Лучше использовать const SizedBox вместо контейнера,
-//                   // т.к. у контейнера нет const-конструктора
-//                   const SizedBox(
-//                 height: 2,
-//                 child: DecoratedBox(
-//                   decoration: BoxDecoration(
-//                     color: Color(clrListTileSeparator),
-//                   ),
-//                 ),
-//               ),
-//             ),
-//       floatingActionButton: ElevatedButton(
-//         onPressed: () async {
-//           final apiKey = dotenv.env['NewswireApiKey'];
-//           try {
-//             var response = await Dio().get(
-//                 'https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=$apiKey');
-//             final newsJsonArr = response.data['results'] as List<dynamic>;
-//             _news = newsJsonArr.map((item) => NewsItem.fromJson(item)).toList();
-//             setState(() {
-//               _isLoaded = true;
-//             });
-//           } catch (e) {
-//             print(e);
-//           }
-//         },
-//         child: const Text('load data'),
-//       ),
-//     );
-//   }
-// }

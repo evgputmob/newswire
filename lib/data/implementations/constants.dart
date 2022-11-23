@@ -6,6 +6,6 @@ final kDioOptions = BaseOptions(
   receiveTimeout: 3000,
 );
 
-const kReReadNewsIntervalInSeconds = 60;
+const kReReadNewsIntervalInSeconds = 300;
 
 const kNewsHasBeenChangedEvent = 'NEWS_HAS_BEEN_CHANGED_EVENT';

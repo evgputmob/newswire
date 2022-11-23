@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:newswire/=models=/news_item.dart';
 import 'package:newswire/ui/constants.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:newswire/ui/utils.dart';
 
 class NewsItemTile extends StatelessWidget {
   final NewsItem newsItem;
@@ -20,24 +20,13 @@ class NewsItemTile extends StatelessWidget {
         : newsItem.section;
 
     return ListTile(
-      onTap: () async {
-        Uri newsItemUrl = Uri.parse(newsItem.url);
-        if (await canLaunchUrl(newsItemUrl)) {
-          await launchUrl(
-            newsItemUrl,
-            mode: LaunchMode.inAppWebView,
-          );
-        } else {
-          throw 'Could not launch';
-          // TODO: SnackBar
-        }
-      },
+      onTap: () => launchUrlInApp(newsItem.url),
       leading: imgUrl.isEmpty
           ? NewsListTileParams.kIconNewspaper
           : CachedNetworkImage(
               imageUrl: imgUrl,
-              width: NewsListTileParams.kPreviewImgSideSize,
-              height: NewsListTileParams.kPreviewImgSideSize,
+              width: kPreviewImgSideSize,
+              height: kPreviewImgSideSize,
               placeholder: (_, __) => NewsListTileParams.kIconNewspaper,
               errorWidget: (_, __, ___) => NewsListTileParams.kIconError,
             ),

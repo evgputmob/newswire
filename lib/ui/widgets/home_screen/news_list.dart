@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:newswire/logic/news_cubit.dart';
-import 'package:newswire/logic/x_status.dart';
+import 'package:newswire/ui/constants.dart';
 import 'package:newswire/ui/widgets/home_screen/news_item_tile.dart';
 
 class NewsList extends StatelessWidget {
@@ -23,13 +23,14 @@ class NewsList extends StatelessWidget {
         return Text(newsState.errorMessage ?? 'Error');
       //---
       case XStatus.success:
+      case XStatus.filterSuccess:
     }
 
     final news = newsState.news;
 
     if (news.isEmpty) {
       return const Center(
-        child: Text('Пока новостей нет...', style: TextStyle(fontSize: 18)),
+        child: Text('There is no news...', style: TextStyle(fontSize: 18)),
       );
     }
 
@@ -39,12 +40,18 @@ class NewsList extends StatelessWidget {
         context.read<NewsCubit>().getNews();
       },
       child: ListView.separated(
-        itemCount: news.length,
-        itemBuilder: (_, index) => NewsItemTile(newsItem: news[index]),
-        separatorBuilder: (_, __) =>
-            Container(color: Colors.grey[350], height: 2),
-        //keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-      ),
+          itemCount: news.length,
+          itemBuilder: (_, index) => NewsItemTile(newsItem: news[index]),
+          separatorBuilder: (_, __) =>
+              // Container(color: Colors.grey[350], height: 2),
+              // Лучше использовать const SizedBox вместо контейнера,
+              // т.к. у контейнера нет const-конструктора
+              const SizedBox(
+                height: 2,
+                child: DecoratedBox(
+                    decoration:
+                        BoxDecoration(color: Color(clrListTileSeparator))),
+              )),
     );
   }
 }
