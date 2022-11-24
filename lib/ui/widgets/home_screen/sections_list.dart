@@ -1,3 +1,4 @@
+import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newswire/logic/sections_cubit.dart';
@@ -16,12 +17,22 @@ class SectionsList extends StatelessWidget {
       //---
       case SecXStatus.inProgress:
         return const Center(
-          child: SizedBox(
-              width: 20, height: 20, child: CircularProgressIndicator()),
+          child: Opacity(
+            opacity: 0.5,
+            child: SizedBox(
+                width: 20, height: 20, child: CircularProgressIndicator()),
+          ),
         );
       //---
       case SecXStatus.failure:
-        return Text(sectionsState.errorMessage ?? 'Error');
+        return SizedBox(
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: Center(
+              child: TextOneLine(
+                sectionsState.errorMessage ?? 'Error',
+                style: TextStyle(color: Colors.red.shade300),
+              ),
+            ));
       //---
       case SecXStatus.success:
     }

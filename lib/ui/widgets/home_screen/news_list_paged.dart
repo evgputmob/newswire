@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newswire/=models=/news_item.dart';
 import 'package:newswire/logic/news_cubit.dart';
+import 'package:newswire/ui/widgets/error_message.dart';
 import 'package:newswire/ui/widgets/home_screen/news_item_panel.dart';
 
-class PagedNewsList extends StatefulWidget {
-  const PagedNewsList({Key? key}) : super(key: key);
+class NewsListPaged extends StatefulWidget {
+  const NewsListPaged({Key? key}) : super(key: key);
 
   @override
-  State<PagedNewsList> createState() => _PagedNewsListState();
+  State<NewsListPaged> createState() => _NewsListPagedState();
 }
 
-class _PagedNewsListState extends State<PagedNewsList>
+class _NewsListPagedState extends State<NewsListPaged>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
@@ -35,8 +36,8 @@ class _PagedNewsListState extends State<PagedNewsList>
         return const Center(child: CircularProgressIndicator());
       //---
       case XStatus.failure:
-        //return ErrorMessage(messageText: newsState.errorMessage);
-        return Text(newsState.errorMessage ?? 'Error');
+        return ErrorMessage(messageText: newsState.errorMessage);
+      //return Text(newsState.errorMessage ?? 'Error');
       //---
       case XStatus.success:
       case XStatus.filterSuccess:
@@ -60,13 +61,7 @@ class _PagedNewsListState extends State<PagedNewsList>
       if (index > news.length - 1) {
         return const Expanded(child: SizedBox());
       }
-      return Expanded(
-        // child: Container(
-        //     width: double.infinity,
-        //     color: Colors.amber[100],
-        //     child: Text(news[index].title)),
-        child: NewsItemPanel(newsItem: news[index]),
-      );
+      return Expanded(child: NewsItemPanel(newsItem: news[index]));
     }
 
     return Column(

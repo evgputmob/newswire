@@ -1,3 +1,4 @@
+import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -26,7 +27,10 @@ class NewsItemPanel extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
             border: Border(
-              bottom: BorderSide(width: 2, color: Colors.indigo.shade100),
+              bottom: BorderSide(
+                width: 2,
+                color: Colors.indigo.shade100.withOpacity(0.6),
+              ),
             ),
             color: Colors.white,
           ),
@@ -51,31 +55,25 @@ class NewsItemPanel extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        TextOneLine(
                           title,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
                               color: Colors.blueGrey[700]),
                         ),
                         const SizedBox(height: 3),
-                        Text(
+                        TextOneLine(
                           subtitle,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontWeight: FontWeight.normal,
                               fontSize: 14,
                               color: Colors.blueGrey[500]),
                         ),
                         const SizedBox(height: 4),
-                        Text(
+                        TextOneLine(
                           DateFormat('dd.MM.yyyy  HH:mm')
                               .format(newsItem.publishedDate),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                               fontSize: 12, color: Color(0xFF7986CB)),
                         ),
@@ -83,7 +81,7 @@ class NewsItemPanel extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: 16),
               ],
             ),
           )),
@@ -99,7 +97,7 @@ class _ImagePlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.transparent, //Colors.green.shade50,
+      color: Colors.transparent,
       width: kPreviewImgSideSize,
       height: kPreviewImgSideSize,
       child: Center(
@@ -118,7 +116,7 @@ class _ImageError extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.transparent, //Colors.green.shade50,
+      color: Colors.transparent,
       width: kPreviewImgSideSize,
       height: kPreviewImgSideSize,
       child: Center(

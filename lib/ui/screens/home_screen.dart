@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newswire/ui/widgets/home_screen/news_list.dart';
-import 'package:newswire/ui/widgets/home_screen/paged_news_list.dart';
+import 'package:newswire/ui/widgets/home_screen/news_list_paged.dart';
 import 'package:newswire/ui/widgets/home_screen/search_bar.dart';
 import 'package:newswire/ui/widgets/home_screen/sections_bar.dart';
 
@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen>
               children: const [
                 SectionsBar(),
                 SearchBar(),
-                Expanded(child: PagedNewsList()),
+                Expanded(child: NewsListPaged()),
               ],
             )
           ],

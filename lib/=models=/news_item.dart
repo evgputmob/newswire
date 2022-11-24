@@ -2,6 +2,11 @@ import 'package:equatable/equatable.dart';
 import 'related_url.dart';
 import 'multimedia_item.dart';
 
+import 'package:hive/hive.dart';
+
+//part 'news_item.g.dart';
+
+@HiveType(typeId: 4)
 class NewsItem with EquatableMixin {
   const NewsItem({
     required this.slugName,
@@ -30,29 +35,53 @@ class NewsItem with EquatableMixin {
     required this.multimedia,
   });
 
+  @HiveField(0)
   final String slugName;
+  @HiveField(1)
   final String section;
+  @HiveField(2)
   final String subsection;
+  @HiveField(3)
   final String title;
+  @HiveField(4)
   final String newsAbstract;
+  @HiveField(5)
   final String uri;
+  @HiveField(6)
   final String url;
+  @HiveField(7)
   final String byline;
+  @HiveField(8)
   final String? thumbnailStandard;
+  @HiveField(9)
   final String itemType;
+  @HiveField(10)
   final String source;
+  @HiveField(11)
   final DateTime updatedDate;
+  @HiveField(12)
   final DateTime createdDate;
+  @HiveField(13)
   final DateTime publishedDate;
+  @HiveField(14)
   final DateTime firstPublishedDate;
+  @HiveField(15)
   final String materialTypeFacet;
+  @HiveField(16)
   final String kicker;
+  @HiveField(17)
   final String subheadline;
+  @HiveField(18)
   final List<String>? desFacet;
+  @HiveField(19)
   final List<String>? orgFacet;
+  @HiveField(20)
   final List<String>? perFacet;
+  @HiveField(21)
   final List<String>? geoFacet;
+  @HiveField(22)
   final List<RelatedUrl>? relatedUrls;
+  @HiveField(23)
   final List<MultimediaItem>? multimedia;
 
   @override

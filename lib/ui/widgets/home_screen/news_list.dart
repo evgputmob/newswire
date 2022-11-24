@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:newswire/logic/news_cubit.dart';
 import 'package:newswire/ui/constants.dart';
+import 'package:newswire/ui/widgets/error_message.dart';
 import 'package:newswire/ui/widgets/home_screen/news_item_tile.dart';
 
 class NewsList extends StatelessWidget {
@@ -19,8 +20,8 @@ class NewsList extends StatelessWidget {
         return const Center(child: CircularProgressIndicator());
       //---
       case XStatus.failure:
-        //return ErrorMessage(messageText: newsState.errorMessage);
-        return Text(newsState.errorMessage ?? 'Error');
+        return ErrorMessage(messageText: newsState.errorMessage);
+      //return Text(newsState.errorMessage ?? 'Error');
       //---
       case XStatus.success:
       case XStatus.filterSuccess:
@@ -36,7 +37,7 @@ class NewsList extends StatelessWidget {
 
     return RefreshIndicator(
       onRefresh: () async {
-        context.read<NewsCubit>().toInitial();
+        //context.read<NewsCubit>().toInitial();
         context.read<NewsCubit>().getNews();
       },
       child: ListView.separated(

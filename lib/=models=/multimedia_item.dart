@@ -1,5 +1,9 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 
+//part 'multimedia_item.g.dart';
+
+@HiveType(typeId: 2)
 class MultimediaItem with EquatableMixin {
   const MultimediaItem({
     required this.url,
@@ -12,13 +16,21 @@ class MultimediaItem with EquatableMixin {
     required this.copyright,
   });
 
+  @HiveField(0)
   final String url;
+  @HiveField(1)
   final String format;
+  @HiveField(2)
   final int height;
+  @HiveField(3)
   final int width;
+  @HiveField(4)
   final String type;
+  @HiveField(5)
   final String subtype;
+  @HiveField(6)
   final String caption;
+  @HiveField(7)
   final String copyright;
 
   @override

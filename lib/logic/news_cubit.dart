@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:newswire/=models=/news_item.dart';
 import 'package:newswire/=models=/section.dart';
 import 'package:newswire/data/i_newswire_service.dart';
@@ -54,6 +55,7 @@ class NewsCubit extends Cubit<NewsState> {
 
   Future<void> getNews() async {
     emit(const NewsState(status: XStatus.inProgress));
+    if (kDebugMode) await Future.delayed(const Duration(milliseconds: 1500));
     try {
       await _newsService.getLatestNews();
       emit(NewsState(
