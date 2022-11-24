@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:newswire/data/i_newswire_service.dart';
 import 'package:newswire/data/implementations/newswire_service.dart';
 import 'package:newswire/logic/news_cubit.dart';
+import 'package:newswire/logic/sections_cubit.dart';
 import 'package:newswire/ui/screens/home_screen.dart';
 
 void main() async {
@@ -17,6 +18,11 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
+        BlocProvider(
+          lazy: false,
+          create: (_) => SectionsCubit(newsService: GetIt.I<INewswireService>())
+            ..getSections(),
+        ),
         BlocProvider(
           lazy: false,
           create: (_) =>

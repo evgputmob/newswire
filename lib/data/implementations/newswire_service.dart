@@ -3,6 +3,7 @@ import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:newswire/=models=/news_item.dart';
+import 'package:newswire/=models=/section.dart';
 import 'package:newswire/data/i_newswire_service.dart';
 //import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'constants.dart';
@@ -61,6 +62,21 @@ class NewswireService implements INewswireService {
       } else {
         //print('Nothing new');
       }
+    } on DioError catch (e) {
+      return Future.error(e.message);
+    } catch (e) {
+      return Future.error('Network error');
+    }
+  }
+
+  @override
+  Future<List<Section>> getSections() async {
+    try {
+      final response = await _dio.get('/section-list.json?api-key=$_apiKey');
+      final sectionsJsonArr = response.data['results'] as List<dynamic>;
+      final sections =
+          sectionsJsonArr.map((item) => Section.fromJson(item)).toList();
+      return sections;
     } on DioError catch (e) {
       return Future.error(e.message);
     } catch (e) {

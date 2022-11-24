@@ -13,8 +13,9 @@ class NewsItemPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imgUrl = newsItem.thumbnailStandard ?? '';
-    final title =
-        (newsItem.title.isNotEmpty) ? newsItem.title : newsItem.itemType;
+    final title = (newsItem.title.isNotEmpty)
+        ? newsItem.title
+        : '[ ${newsItem.itemType} ]';
     final subtitle = (newsItem.subsection.isNotEmpty)
         ? '${newsItem.section} / ${newsItem.subsection}'
         : newsItem.section;
@@ -69,7 +70,7 @@ class NewsItemPanel extends StatelessWidget {
                               fontSize: 14,
                               color: Colors.blueGrey[500]),
                         ),
-                        const SizedBox(height: 5),
+                        const SizedBox(height: 4),
                         Text(
                           DateFormat('dd.MM.yyyy  HH:mm')
                               .format(newsItem.publishedDate),

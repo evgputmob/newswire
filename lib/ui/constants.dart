@@ -6,9 +6,9 @@ abstract class NewsHeaderParams {
   static const kVertPadding = kHorizPadding + kTopPadding;
 }
 
-const clrLightGrey = 0xFFE0E0E0;
-const clrLightPink = 0xFFFCE4EC;
-const clrListTileSeparator = 0xFFCECECE;
+const kLightGreyColor = 0xFFE0E0E0;
+const kLightPinkColor = 0xFFFCE4EC;
+const kListTileSeparatorColor = 0xFFCECECE;
 
 const kPreviewImgSideSize = 64.0;
 
@@ -20,7 +20,7 @@ abstract class NewsListTileParams {
       child: Icon(
         Icons.newspaper,
         size: kPreviewImgSideSize,
-        color: Color(clrLightGrey),
+        color: Color(kLightGreyColor),
       ),
     ),
   );
@@ -32,37 +32,41 @@ abstract class NewsListTileParams {
       child: Icon(
         Icons.error,
         size: kPreviewImgSideSize,
-        color: Color(clrLightPink),
+        color: Color(kLightPinkColor),
       ),
     ),
   );
 }
 
-const kTextFieldBorderRadius = 12.0;
-
-const clrTextFieldBorder = 0xFF9FA8DA;
+const kSearchFieldBorderRadius = 12.0;
+const kSearchFieldBorderColor = Color.fromARGB(255, 178, 185, 225);
+const kSearchFieldFillColor = Color.fromARGB(204, 255, 255, 255);
 
 const kTextFieldDecoration = InputDecoration(
-  hintText: '',
-  hintStyle: TextStyle(color: Colors.black54, fontWeight: FontWeight.normal),
+  hintText: 'Type here...',
+  hintStyle: TextStyle(
+    color: Colors.black26,
+    fontWeight: FontWeight.normal,
+    fontSize: 13,
+  ),
   isDense: true,
   contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+  filled: true,
+  fillColor: kSearchFieldFillColor,
   border: OutlineInputBorder(
     borderSide: BorderSide(width: 2),
-    borderRadius: BorderRadius.all(Radius.circular(kTextFieldBorderRadius)),
+    borderRadius: BorderRadius.all(Radius.circular(kSearchFieldBorderRadius)),
   ),
   errorBorder: OutlineInputBorder(
     borderSide: BorderSide(color: Colors.red, width: 2),
-    borderRadius: BorderRadius.all(Radius.circular(kTextFieldBorderRadius)),
+    borderRadius: BorderRadius.all(Radius.circular(kSearchFieldBorderRadius)),
   ),
   enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Color(clrTextFieldBorder), width: 2),
-    borderRadius: BorderRadius.all(Radius.circular(kTextFieldBorderRadius)),
+    borderSide: BorderSide(color: (kSearchFieldBorderColor), width: 2),
+    borderRadius: BorderRadius.all(Radius.circular(kSearchFieldBorderRadius)),
   ),
   focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Color(clrTextFieldBorder), width: 2),
-    borderRadius: BorderRadius.all(Radius.circular(kTextFieldBorderRadius)),
+    borderSide: BorderSide(color: (kSearchFieldBorderColor), width: 2),
+    borderRadius: BorderRadius.all(Radius.circular(kSearchFieldBorderRadius)),
   ),
-  filled: true,
-  fillColor: Colors.white,
 );

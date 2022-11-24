@@ -13,8 +13,9 @@ class NewsItemTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imgUrl = newsItem.thumbnailStandard ?? '';
-    final title =
-        (newsItem.title.isNotEmpty) ? newsItem.title : newsItem.itemType;
+    final title = (newsItem.title.isNotEmpty)
+        ? newsItem.title
+        : '[ ${newsItem.itemType} ]';
     final subtitle = (newsItem.subsection.isNotEmpty)
         ? '${newsItem.section} / ${newsItem.subsection}'
         : newsItem.section;

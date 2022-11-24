@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:newswire/ui/widgets/home_screen/news_list.dart';
 import 'package:newswire/ui/widgets/home_screen/paged_news_list.dart';
 import 'package:newswire/ui/widgets/home_screen/search_bar.dart';
+import 'package:newswire/ui/widgets/home_screen/sections_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -88,6 +89,7 @@ class _HomeScreenState extends State<HomeScreen>
             Column(
               key: const PageStorageKey('SmartListPage'),
               children: const [
+                SectionsBar(),
                 SearchBar(),
                 Expanded(child: PagedNewsList()),
               ],

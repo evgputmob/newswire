@@ -22,11 +22,10 @@ class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     return Ink(
-      height: 70,
+      height: 58,
       width: double.infinity,
       decoration: BoxDecoration(
         border: Border(
-          top: const BorderSide(width: 4, color: Colors.transparent),
           bottom: BorderSide(
             width: 4,
             color: Colors.indigo.shade200.withOpacity(0.5),
@@ -34,38 +33,47 @@ class _SearchBarState extends State<SearchBar> {
         ),
         color: Colors.indigo.shade100,
       ),
-      child: Row(
-        children: [
-          const SizedBox(width: 20),
-          const Text('Search:'),
-          const SizedBox(width: 8),
-          Expanded(
-            child: TextField(
-              controller: _controllerTextFieldSearch,
-              onChanged: (value) {
-                context.read<NewsCubit>().getFilteredNews(filterString: value);
-              },
-              decoration: kTextFieldDecoration,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.indigo,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 1),
+        child: Row(
+          children: [
+            const SizedBox(width: 20),
+            const Text(
+              'Search:',
+              style: TextStyle(color: Colors.black54, fontSize: 14),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: TextField(
+                controller: _controllerTextFieldSearch,
+                onChanged: (value) {
+                  context
+                      .read<NewsCubit>()
+                      .getFilteredNews(filterString: value);
+                },
+                decoration: kTextFieldDecoration,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.indigo,
+                ),
               ),
             ),
-          ),
-          IconButton(
-            onPressed: () {
-              FocusManager.instance.primaryFocus?.unfocus();
-              _controllerTextFieldSearch.text = '';
-              context.read<NewsCubit>().getFilteredNews(filterString: '');
-            },
-            icon: const Icon(
-              Icons.cancel,
-              color: Colors.white,
-              size: 26,
+            const SizedBox(width: 3),
+            IconButton(
+              onPressed: () {
+                FocusManager.instance.primaryFocus?.unfocus();
+                _controllerTextFieldSearch.text = '';
+                context.read<NewsCubit>().getFilteredNews(filterString: '');
+              },
+              icon: const Icon(
+                Icons.cancel,
+                color: Colors.white,
+                size: 26,
+              ),
             ),
-          ),
-          const SizedBox(width: 16),
-        ],
+            const SizedBox(width: 10),
+          ],
+        ),
       ),
     );
   }

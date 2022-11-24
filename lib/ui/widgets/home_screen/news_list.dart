@@ -50,7 +50,7 @@ class NewsList extends StatelessWidget {
                 height: 2,
                 child: DecoratedBox(
                     decoration:
-                        BoxDecoration(color: Color(clrListTileSeparator))),
+                        BoxDecoration(color: Color(kListTileSeparatorColor))),
               )),
     );
   }
